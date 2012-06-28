@@ -1,58 +1,33 @@
-METALLIKE = function(nodeid, nodename,fence)
-	minetest.register_node("madblocks:"..nodeid, {
-		description = nodename,
-		tile_images = {"madblocks_"..nodeid..".png"},
-		inventory_image = minetest.inventorycube("madblocks_"..nodeid..".png"),
-		is_ground_content = true,
-		groups = {cracky=3},
-		sounds = default.node_sound_wood_defaults(),
-	})
-	if fence == true then
-		minetest.register_node("madblocks:"..nodeid.."_fence", {
-			description = nodename.." Fence",
-			drawtype = "fencelike",
-			tile_images = {"madblocks_"..nodeid..".png"},
-			inventory_image = "madblocks_"..nodeid.."_fence.png",
-			wield_image = "madblocks_"..nodeid.."_fence.png",
-			paramtype = "light",
-			is_ground_content = true,
-			selection_box = {
-				type = "fixed",
-				fixed = {-1/7, -1/2, -1/7, 1/7, 1/2, 1/7},
-			},
-			groups = {cracky=3},
-			sounds = default.node_sound_wood_defaults(),
-		})
-	end
-end
+local like = minetest.require("madblocks","like")("madblocks")
+local soundNode = minetest.require("madblocks","sound")("madblocks")
 
 -- ***********************************************************************************
 --		NEW METALLIC ITEMS				**************************************************
 -- ***********************************************************************************
 
-METALLIKE('brushedmetal','Brushed Metal',true)
-METALLIKE('yellow_rustedmetal','Yellow Painted Rusted Metal',true)
-METALLIKE('texturedmetal','Textured Metal')
-METALLIKE('metalbulkhead','Metal Bulkhead')
-METALLIKE('stripedmetal','Caution Striped Metal')
-BRICKLIKE('brownmedistonebrick','Mediterranean Stonebrick (Brown Tones)')
+like.metal('brushedmetal','Brushed Metal',true)
+like.metal('yellow_rustedmetal','Yellow Painted Rusted Metal',true)
+like.metal('texturedmetal','Textured Metal')
+like.metal('metalbulkhead','Metal Bulkhead')
+like.metal('stripedmetal','Caution Striped Metal')
+like.brick('brownmedistonebrick','Mediterranean Stonebrick (Brown Tones)')
 
 -- ***********************************************************************************
 --		RIVEN/MYST (DECO) NODES			**************************************************
 -- ***********************************************************************************
 
-SOUNDNODE('riven1','Riven Art (1)','signlike')
-SOUNDNODE('riven2','Riven Art (2)','signlike')
-SOUNDNODE('riven3','Riven Art (3)','signlike')
-METALLIKE('rivenwood','Riven Wood')
-METALLIKE('rivenwoodblue','Riven Wood (Blue)')
-METALLIKE('rivenstone1','Riven Stone (1)')
-METALLIKE('rivenstone2','Riven Stone (2)')
-METALLIKE('rivenstoneblue','Riven Stone (Blue)')
-METALLIKE('rivenmetal','Riven Rusted Metal')
-METALLIKE('rivenbulkhead','Riven Metal Bulkhead')
-METALLIKE('rivengoldstone1','Riven Gold Stone (1)')
-METALLIKE('rivengoldstone2','Riven Gold Stone (2)')
+soundNode('riven1','Riven Art (1)','signlike')
+soundNode('riven2','Riven Art (2)','signlike')
+soundNode('riven3','Riven Art (3)','signlike')
+like.metal('rivenwood','Riven Wood')
+like.metal('rivenwoodblue','Riven Wood (Blue)')
+like.metal('rivenstone1','Riven Stone (1)')
+like.metal('rivenstone2','Riven Stone (2)')
+like.metal('rivenstoneblue','Riven Stone (Blue)')
+like.metal('rivenmetal','Riven Rusted Metal')
+like.metal('rivenbulkhead','Riven Metal Bulkhead')
+like.metal('rivengoldstone1','Riven Gold Stone (1)')
+like.metal('rivengoldstone2','Riven Gold Stone (2)')
 
 minetest.register_node("madblocks:rivenbeetle", {
 	description = "Sign",
@@ -300,7 +275,7 @@ minetest.register_node("madblocks:palmleaves", {
 	},
 	groups = {bendy=2,snappy=1,dig_immediate=2},
 })
-PLANTLIKE('palmtree','Palmtree Sapling','veg')
+like.plant('palmtree','Palmtree Sapling','veg')
 minetest.register_abm({
 		nodenames = { "madblocks:palmtree" },
 		interval = 120,

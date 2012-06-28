@@ -218,7 +218,7 @@ end
 --		WILD PLANTS/SEEDS GENERATING
 minetest.register_abm({
 		nodenames = { "default:dirt_with_grass" },
-		interval = NATURE_GROWSPEED,
+		interval = NATURE_GROW_INTERVAL,
 		chance = 80,
 		action = function(pos, node, active_object_count, active_object_count_wider)
 			local air = { x=pos.x, y=pos.y+1,z=pos.z }
@@ -233,7 +233,7 @@ minetest.register_abm({
 })
 minetest.register_abm({
 		nodenames = get_wildplants,
-		interval = NATURE_GROWSPEED,
+		interval = NATURE_GROW_INTERVAL,
 		chance = 2,
 		action = function(pos, node, active_object_count, active_object_count_wider)
 			minetest.env:remove_node({x=pos.x,y=pos.y,z=pos.z})

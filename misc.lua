@@ -1,73 +1,11 @@
 -- ***********************************************************************************
 --		SOUND NODES							**************************************************
 -- ***********************************************************************************
-SOUNDS = {}
-SOUNDNODE = function(nodeid, nodename,drawtype)
-	SOUNDS[nodeid] = {}
-	SOUNDS[nodeid].sounds = {}
-	local on_punch = function(pos,node)
-		local sound = SOUNDS[nodeid].sounds[minetest.hash_node_position(pos)]
-		if sound == nil then 
-			local wanted_sound = {name=nodeid, gain=1.5}
-			SOUNDS[nodeid].sounds[minetest.hash_node_position(pos)] = {	handle = minetest.sound_play(wanted_sound, {pos=pos, loop=true}),	name = wanted_sound.name, }
 
-		else 
-			minetest.sound_stop(sound.handle)
-			SOUNDS[nodeid].sounds[minetest.hash_node_position(pos)] = nil
-		end
+local soundNode = minetest.require("madblocks","sound")("madblocks")
 
-	end
-	after_dig_node = function(pos,node)
-		local sound = SOUNDS[nodeid].sounds[minetest.hash_node_position(pos)]
-		if sound ~= nil then
-			minetest.sound_stop(sound.handle)
-			SOUNDS[nodeid].sounds[minetest.hash_node_position(pos)] = nil
-			nodeupdate(pos)
-		end
-	end
-	if drawtype == 'signlike' then
-		minetest.register_node("madblocks:"..nodeid, {
-			description = nodename,
-			drawtype = "signlike",
-			tile_images = {"madblocks_"..nodeid..'.png'}, 
-			inventory_image = "madblocks_"..nodeid..'.png',
-			wield_image = "madblocks_"..nodeid..'.png', 
-			paramtype = "light",
-			paramtype2 = "wallmounted",
-			sunlight_propagates = true,
-			walkable = false,
-			metadata_name = "sign",
-			selection_box = {
-				type = "wallmounted",
-				--wall_top = <default>
-				--wall_bottom = <default>
-				--wall_side = <default>
-			},
-			groups = {choppy=2,dig_immediate=2},
-			legacy_wallmounted = true,
-			sounds = default.node_sound_defaults(),
-			on_punch = on_punch,
-			after_dig_node = after_dig_node,		
-		})
-	elseif drawtype == '' then 
-		minetest.register_node("madblocks:"..nodeid, { 
-			description = nodename, 
-			drawtype = 'plantlike', 
-			tile_images = {"madblocks_"..nodeid..'.png'}, 
-			inventory_image = "madblocks_"..nodeid..'.png',
-			wield_image = "madblocks_"..nodeid..'.png', 
-			paramtype = "light",
-			groups = {cracky=3},
-			sounds = default.node_sound_stone_defaults(),
-			on_punch = on_punch,	
-			after_dig_node = after_dig_node,
-		})
-	end
-end
-
-
-SOUNDNODE('siren','Loud Siren')
-SOUNDNODE('churchbells','Church Bells')
+soundNode('siren','Loud Siren')
+soundNode('churchbells','Church Bells')
 
 local bigben = {}
 bigben.sounds = {}

@@ -1,3 +1,5 @@
+local like = minetest.require("madblocks","like")("madblocks")
+
 -- ***********************************************************************************
 --		FUNCTIONS							**************************************************
 -- ***********************************************************************************
@@ -73,37 +75,16 @@ spotlight_off = function(pos,node)
 			end
 end
 
-GLOWLIKE = function(nodeid,nodename,drawtype)
-	if drawtype == nil then 
-		drawtype = 'glasslike'
-		inv_image = minetest.inventorycube("madblocks_"..nodeid..".png")
-	else 
-		inv_image = "madblocks_"..nodeid..".png" 
-	end
-	minetest.register_node("madblocks:"..nodeid, {
-		description = nodename,
-		drawtype = drawtype,
-		tile_images = {"madblocks_"..nodeid..".png"},
-		inventory_image = inv_image,
-		light_propagates = true,
-		paramtype = "light",
-		sunlight_propagates = true,
-		light_source = 15	,
-		is_ground_content = true,
-		groups = {snappy=2,cracky=3,oddly_breakable_by_hand=3},
-		sounds = default.node_sound_glass_defaults(),
-	})
-end
 
 -- ***********************************************************************************
 --		DEFS									**************************************************
 -- ***********************************************************************************
-GLOWLIKE('glowyellow','Yellow Glow Glass')
-GLOWLIKE('glowgreen','Green Glow Glass')
-GLOWLIKE('glowblue','Blue Glow Glass')
-GLOWLIKE('glowred','Red Glow Glass')
-GLOWLIKE('glowtron','Tron Glow Glass')
-GLOWLIKE('fancylamp','Fancy Lamp','plantlike')
+like.glow('glowyellow','Yellow Glow Glass')
+like.glow('glowgreen','Green Glow Glass')
+like.glow('glowblue','Blue Glow Glass')
+like.glow('glowred','Red Glow Glass')
+like.glow('glowtron','Tron Glow Glass')
+like.glow('fancylamp','Fancy Lamp','plantlike')
 
 minetest.register_node("madblocks:light", {
 	drawtype = "glasslike",

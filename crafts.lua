@@ -426,16 +426,6 @@ minetest.register_craft({	output = 'madblocks:signs_cafe 1',	recipe = {
 		{'','default:sign_wall',''},
 		{'','default:torch',''},
 	}})
-minetest.register_craft({	output = 'madblocks:signs_drpepper 1',	recipe = {
-		{'','madblocks:dye_black',''},
-		{'','default:sign_wall',''},
-		{'','madblocks:dye_red',''},
-	}})
-minetest.register_craft({	output = 'madblocks:signs_enjoycoke 1',	recipe = {
-		{'','madblocks:sheetmetal',''},
-		{'','default:sign_wall',''},
-		{'','madblocks:dye_red',''},
-	}})
 minetest.register_craft({	output = 'madblocks:signs_hucksfoodfuel 1',	recipe = {
 		{'','madblocks:dye_red',''},
 		{'','default:sign_wall',''},
